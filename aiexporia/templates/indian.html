@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% block style %}
+<title>Aisearchlibrary blogs</title>
+{% endblock style %}
+{% block form %}
+<form class="d-flex" action="searchres" mehthod="get"role="search">
+    <input class="form-control me-2" name="searches" type="search" placeholder="Search For Ai" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+{% endblock form %}
+{% block body %}
+
+{% for displayinAI in page_obj %}
+<div class="card align-items-center d-inline-flex border-success" style="width: 18rem;">
+    <img style="height:28px;width:28px;border-radius:50%"  src="{{displayinAI.image}}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Name : {{displayinAI.name}}</h5>
+        <p class="card-text">About : {{displayinAI.description}}</p>
+        <h6 class="card-title">Categories : {{displayinAI.category}}</h6>
+        <a href="{{displayinAI.url}}" class="btn btn-primary">View</a>
+    </div>
+</div>
+{% endfor %}
+ <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1">First</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+        {% endif %}
+        
+        <li class="page-item disabled">
+            <a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+        </li>
+        
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% comment %} {% block body %}{% endblock body %} {% endcomment %}
+
+{% endblock body %}
