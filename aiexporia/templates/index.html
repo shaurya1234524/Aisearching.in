@@ -17,47 +17,47 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
         {% block title %}  <title>All Types of AI Searches - Categorized | AI Blog</title> {% endblock title %}
         <meta name="description" content="Explore all types of Artificial Intelligence (AI) categorized by type, including Machine Learning, NLP, Computer Vision, and more. Stay updated with the latest AI advancements.">
-        <meta name="keywords" content="Artificial Intelligence, AI types, Machine Learning, Deep Learning, NLP, Computer Vision, AI Blog, AI Categories">
-        <meta name="author" content="Aisearchlibrary.com">
+        <meta name="keywords" content="Artificial Intelligence, AI types, Ai libraray,Homeworks Ai, Coding Ai, AI Categories">
+        <meta name="author" content="aisearchlibrary.in">
         
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
-        <meta property="og:title" content="All Types of AI - Categorized | AI Blog">
-        <meta property="og:description" content="Discover different types of AI categorized, including ML, NLP, Computer Vision, Robotics, and more. Stay ahead with AI insights.">
-        <meta property="og:image" content="ejkac0usmvktzpngwm24.jpg">
-        <meta property="og:url" content="https://Aisearchlibrary.com">
+        <meta property="og:title" content="All Types of AI - Categorized Directory| AI Blog">
+        <meta property="og:description" content="This a website which contains links to all type of ai that are present . This site contains the collection of all ai that are present in the market">
+        <meta property="og:image" content="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
+        <meta property="og:url" content="https://aisearchlibrary.in">
         <meta property="og:site_name" content="Ai search library">
     
         <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:card" content="ejkac0usmvktzpngwm24.jpg">
         <meta name="twitter:title" content="All Types of AI - Categorized | AI Blog">
         <meta name="twitter:description" content="Discover different types of AI categorized, including ML, NLP, Computer Vision, Robotics, and more. Stay ahead with AI insights.">
-        <meta name="twitter:image" content="ejkac0usmvktzpngwm24.jpg">
+        <meta name="twitter:image" content="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
         <meta name="twitter:site" content="@yourTwitterHandle">
     
         <!-- Canonical URL -->
-        <link rel="canonical" href="https://Aisearchlibrary.com">
+        <link rel="canonical" href="https://aisearchlibrary.in">
     
         <!-- Favicon -->
-        <!-- <link rel="icon" type="image/png" href=""> -->
+        <link rel="icon" type="image/png" href="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
     
         <!-- Schema.org JSON-LD Markup for SEO -->
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": "All Types of AI - Categorized",
-            "description": "Explore all types of Artificial Intelligence (AI) categorized by type, including Machine Learning, NLP, Computer Vision, and more.",
+            "@type": "AI library",
+            "headline": "This a website which contains links to all type of ai that are present . This site contains the collection of all ai that are present in the market",
+            "description": "Explore all types of Artificial Intelligence (AI) by categories, we provide facilities to explore all type of ai . It is directory that contains link of all ais",
             "author": {
-                "@type": "Person",
-                "name": "Aisearchlibrary"
+                "@type": "AI library",
+                "name": "aisearchlibrary.in"
             },
             "publisher": {
-                "@type": "Organizatn",
-                "name": "Aisearchlibrary",
+                "@type": "Company",
+                "name": "aisearchlibrary",
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "ejkac0usmvktzpngwm24.jpg"
+                    "url": "https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg"
                 }
             },
             "datePublished": "2025-02-12",
@@ -73,7 +73,7 @@
         <nav class="navbar naiovbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 {% load static %}
-<img src="{% static 'ejkac0usmvktzpngwm24.jpg' %}" alt="My image" height="5%" width="5%">
+<img src="{% static 'https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg' %}" alt="My image" height="10%" width="10%">
               <a class="navbar-brand" href="/">ALL AI LIST</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -97,7 +97,7 @@
                     </ul>
                     {% block form %}
                     <form class="d-flex" action="searchresult" mehthod="get"role="search">
-                        <input class="form-control me-2" name="search" type="search" placeholder="Search For Ai" aria-label="Search">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search Ai Name /category " aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     {% endblock form %}
@@ -107,15 +107,18 @@
         </nav>
         {% block body %}
         {% for displayAI in page_obj %}
-        <div class="card align-items-center d-inline-flex border-success" style="width: 18rem;">
-            <img style="height:28px;width:28px;border-radius:50%"  src="{{displayAI.image}}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Name : {{displayAI.name}}</h5>
-                <p class="card-text">About : {{displayAI.description}}</p>
-                <h6 class="card-title">Categories : {{displayAI.category}}</h6>
-                <a href="{{displayAI.url}}" class="btn btn-primary">View</a>
-            </div>
-        </div>
+        <div class="card border-success shadow-sm rounded-3 text-center" style="width: 18rem;">
+    <div class="d-flex justify-content-center mt-3">
+        <img src="{{displayAI.image}}" class="rounded-circle border border-2 border-success" style="height: 60px; width: 60px;" alt="Profile Image">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title text-success fw-bold">{{displayAI.name}}</h5>
+        <p class="card-text text-muted">{{displayAI.description}}</p>
+        <h6 class="text-dark">Categories: <span class="fw-semibold">{{displayAI.category}}</span></h6>
+        <a href="{{displayAI.url}}" class="btn btn-outline-success mt-2">View Details</a>
+    </div>
+</div>
+
         {% endfor %}
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
