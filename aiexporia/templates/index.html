@@ -109,17 +109,38 @@
         </nav>
         {% block body %}
         {% for displayAI in page_obj %}
-        <div class="card border-success shadow-sm rounded-3  text-center d-inline-flex" style="width: 18rem;">
-    <div class="d-flex justify-content-center mt-3">
-        <img src="{{displayAI.image}}" class="rounded-circle border border-2 border-success" style="height: 60px; width: 60px;" alt="Profile Image">
+<div class="card border-success shadow-sm rounded-3 text-center" style="width: 18rem;">
+    <!-- Like Counter at the Top -->
+    <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
+        ❤️ <span id="likeCount">0</span>
     </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        <img src="{{displayAI.image}}" class="rounded-circle border border-2 border-success" 
+            style="height: 60px; width: 60px;" alt="Profile Image">
+    </div>
+
     <div class="card-body">
         <h5 class="card-title text-success fw-bold">{{displayAI.name}}</h5>
         <p class="card-text text-muted">{{displayAI.description}}</p>
         <h6 class="text-dark">Categories: <span class="fw-semibold">{{displayAI.category}}</span></h6>
         <a href="{{displayAI.url}}" class="btn btn-outline-success mt-2">View Details</a>
+        
+        <!-- Like Button -->
+        <button class="btn btn-outline-danger mt-2" onclick="increaseLikes()">❤️ Like</button>
     </div>
 </div>
+
+<script>
+    let likeCount = 0;
+    function increaseLikes() {
+        likeCount++;
+        document.getElementById("likeCount").innerText = likeCount;
+    }
+</script>
+
+
+
 
         {% endfor %}
         <nav aria-label="Page navigation">
