@@ -17,59 +17,52 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-        {% block title %}  <title>All Types of AI Searches - Categorized | AI Blog</title> {% endblock title %}
-        <meta name="description" content="Explore all types of Artificial Intelligence (AI) categorized by type, including Machine Learning, NLP, Computer Vision, and more. Stay updated with the latest AI advancements.">
-        <meta name="keywords" content="Artificial Intelligence, AI types, Ai libraray,Homeworks Ai, Coding Ai, AI Categories">
+        {% block title %}  <title>The ultimate full AI list of all the tools available in the world in a ranking. List updated daily and Top 10 by category available.</title> {% endblock title %}
+        <meta name="description" content="Explore all types of Artificial Intelligence (AI) categorized by type .The ultimate full AI list of all the tools available in the world in a ranking. List updated daily and Top 10 by category available.">
+        <meta name="keywords" content="Artificial Intelligence, AI types, Ai libraray,AI list, Ultimate list of All AI, AI Categories">
         <meta name="author" content="aisearchlibrary.in">
         
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
-        <meta property="og:title" content="All Types of AI - Categorized Directory| AI Blog">
-        <meta property="og:description" content="This a website which contains links to all type of ai that are present . This site contains the collection of all ai that are present in the market">
+        <meta property="og:title" content="The ultimate full AI list of all the tools available in the world in a ranking. List updated daily and Top 10 by category available.">
+        <meta property="og:description" content="Explore all types of Artificial Intelligence (AI) categorized by type .The ultimate full AI list of all the tools available in the world in a ranking. List updated daily and Top 10 by category available.">
         <meta property="og:image" content="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
         <meta property="og:url" content="https://aisearchlibrary.in">
         <meta property="og:site_name" content="Ai search library">
     
         <!-- Twitter Meta Tags -->
         <meta name="twitter:card" content="ejkac0usmvktzpngwm24.jpg">
-        <meta name="twitter:title" content="All Types of AI - Categorized | AI Blog">
-        <meta name="twitter:description" content="Discover different types of AI categorized, including ML, NLP, Computer Vision, Robotics, and more. Stay ahead with AI insights.">
+        <meta name="twitter:title" content="The ultimate full AI list of all the tools available in the world in a ranking. List updated daily and Top 10 by category available.">
+        <meta name="twitter:description" content="Explore all types of Artificial Intelligence (AI) categorized by type .The ultimate full AI list of all the tools available in the world in a ranking. List updated daily and Top 10 by category available.">
         <meta name="twitter:image" content="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
-        <meta name="twitter:site" content="@yourTwitterHandle">
+        <meta name="twitter:site" content="shaurya_si54824">
     
         <!-- Canonical URL -->
-        <link rel="canonical" href="https://aisearchlibrary.in">
+        <link rel="canonical" href="https://aisearchlibrary.in/">
     
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
     
         <!-- Schema.org JSON-LD Markup for SEO -->
-        <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "AI library",
-            "headline": "This a website which contains links to all type of ai that are present . This site contains the collection of all ai that are present in the market",
-            "description": "Explore all types of Artificial Intelligence (AI) by categories, we provide facilities to explore all type of ai . It is directory that contains link of all ais",
-            "author": {
-                "@type": "AI library",
-                "name": "aisearchlibrary.in"
-            },
-            "publisher": {
-                "@type": "Company",
-                "name": "aisearchlibrary",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg"
-                }
-            },
-            "datePublished": "2025-02-12",
-            "dateModified": "2025-02-12",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "https://Aisearchlibrary.com"
-            }
-        }
-        </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "AI Tools Directory ",
+        
+  "serviceType": "An Comprehensive list of All AI Tools that are available in market ",
+         {% for displayAI in page_obj %}
+   "aitools":{
+        "@type": "{{displayAI.category}}",
+          "name":"{{displayAI.name}}",
+           "description":"{{displayAI.description}}",
+        "image":"{{displayAI.url}}",
+        "category":"{{displayAI.category}}",
+   }
+         {% endfor %}
+}
+</script>
+       
+       
     </head>
     <body>
         <nav class="navbar naiovbar-expand-lg bg-body-tertiary">
