@@ -1,9 +1,11 @@
 {% extends "index.html" %}
 {% block style %}
 <title>Aisearchlibrary blogs</title>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7277508044418574"
+     crossorigin="anonymous"></script>
 {% endblock style %}
 {% block form %}
-<form class="d-flex" action="searchres" mehthod="get"role="search">
+<form class="d-flex" action="searchres" method="get"role="search">
     <input class="form-control me-2" name="searches" type="search" placeholder="Search For Ai" aria-label="Search">
     <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
@@ -11,15 +13,18 @@
 {% block body %}
 
 {% for displayinAI in page_obj %}
-<div class="card align-items-center d-inline-flex border-success" style="width: 18rem;">
-    <img style="height:28px;width:28px;border-radius:50%"  src="{{displayinAI.image}}" class="card-img-top" alt="...">
+<div class="card border-success shadow-sm rounded-3 text-center" style="width: 18rem;">
+    <div class="d-flex justify-content-center mt-3">
+        <img src="{{displayinAI.image}}" class="rounded-circle border border-2 border-success" style="height: 60px; width: 60px;" alt="Profile Image">
+    </div>
     <div class="card-body">
-        <h5 class="card-title">Name : {{displayinAI.name}}</h5>
-        <p class="card-text">About : {{displayinAI.description}}</p>
-        <h6 class="card-title">Categories : {{displayinAI.category}}</h6>
-        <a href="{{displayinAI.url}}" class="btn btn-primary">View</a>
+        <h5 class="card-title text-success fw-bold">{{displayinAI.name}}</h5>
+        <p class="card-text text-muted">{{displayinAI.description}}</p>
+        <h6 class="text-dark">Categories: <span class="fw-semibold">{{displayinAI.category}}</span></h6>
+        <a href="{{displayinAI.url}}" class="btn btn-outline-success mt-2">View Details</a>
     </div>
 </div>
+
 {% endfor %}
  <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
