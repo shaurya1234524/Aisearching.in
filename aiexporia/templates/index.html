@@ -97,16 +97,19 @@
                         </li>
                         
                     </ul>
-                    {% block form %}
-                    <form class="d-flex" action="searchresult" mehthod="get"role="search">
-                        <input class="form-control me-2" name="search" type="search" placeholder="Search Ai Name /category " aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    {% endblock form %}
+                   
                 </div>
             </div>
             
         </nav>
+          {% block form %}
+<div class="container-fluid">
+                    <form class="d-flex" action="searchresult" method="get"role="search">
+                        <input class="form-control me-2" name="search" type="search" placeholder="Search Ai Name /category " aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+</div>
+                    {% endblock form %}
         {% block body %}
         {% for displayAI in page_obj %}
 <div class="card border-success shadow-sm rounded-3 text-center" style="width: 18rem;">
