@@ -112,10 +112,8 @@
                     {% endblock form %}
         {% block body %}
         {% for displayAI in page_obj %}
-<div class="container mt-3">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <div class="col">
-            <div class="card border-success shadow-sm rounded-3 text-center position-relative" style="width: 18rem;">
+
+            <div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative" style="width: 18rem;">
                 <!-- Like Counter at the Top -->
                 <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
                     ❤️ <span id="likeCount_{{displayAI.name}}">0</span>
@@ -138,9 +136,8 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+       
+
 
 <script>
     function initializeLikes(itemName) {
