@@ -56,7 +56,7 @@
       "description": "{{ displayAI.description }}",
       "image": "{{ displayAI.url }}",
       "category": "{{ displayAI.category }}"
-    },
+    }{% if not forloop.last %},{% endif %}
     {% endfor %}
   ]
 }
