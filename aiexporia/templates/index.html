@@ -134,46 +134,39 @@
             </div>
        
 
-
 <script>
-    function initializeLikes(itemName) {
-        const likeKey = "liked_" + itemName;
-        let likeCount = localStorage.getItem(likeKey) ? 1 : 0;
-        
-        document.getElementById("likeCount_" + itemName).innerText = likeCount;
+function increaseLikes(aiName) {
+    fetch(`/like/${aiName}/`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken"), // Ensure CSRF token is included
+            "Content-Type": "application/json"
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById(`likeCount_${aiName}`).innerText = data.likes;
+    })
+    .catch(error => console.error("Error:", error));
+}
 
-        if (likeCount === 1) {
-            document.getElementById("likeButton_" + itemName).disabled = true;
+// Function to get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
         }
     }
+    return cookieValue;
+}
 
-    function increaseLikes(itemName) {
-        const likeKey = "liked_" + itemName;
-        
-        if (!localStorage.getItem(likeKey)) {
-            localStorage.setItem(likeKey, "true");
-            document.getElementById("likeCount_" + itemName).innerText = 1;
-            document.getElementById("likeButton_" + itemName).disabled = true;
-        }
-    }
-
-    // Initialize likes for all cards on page load
-    document.addEventListener("DOMContentLoaded", function () {
-        initializeLikes("{{displayAI.name}}");
-    });
 </script>
-
-<!-- <script>
-    let likeCount = 0;
-    function increaseLikes() {
-        likeCount++;
-        document.getElementById("likeCount").innerText = likeCount;
-    }
-</script> -->
-
-
-
-
         {% endfor %}
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
