@@ -26,7 +26,7 @@ urlpatterns = [
     path('blo',views.blo,name="blo"),
     path('',include(aiexporiahome.urls)),
     path('india',views.displayin,name="displayin"),
-    path('like/<str:ai_name>/', like_ai, name='like_ai'),
+
     path('searchresult',views.searchresults,name="searchresults"),
     path('searchres',views.searchres,name="searchres"),
     path('searchresultsss',views.searchresultsss,name="searchresultsss"),
