@@ -51,11 +51,11 @@
   "aitools": [
     {% for displayAI in page_obj %}
     {
-      "@type": "{{ displayAI.category }}",
-      "name": "{{ displayAI.name }}",
-      "description": "{{ displayAI.description }}",
-      "image": "{{ displayAI.url }}",
-      "category": "{{ displayAI.category }}"
+      "@type": "{{ displayAI.category |escapejs  }}",
+      "name": "{{ displayAI.name |escapejs  }}",
+      "description": "{{ displayAI.description |escapejs  }}",
+      "image": "{{ displayAI.url|escapejs  }}",
+      "category": "{{ displayAI.category|escapejs  }}"
     }{% if not forloop.last %},{% endif %}
     {% endfor %}
   ]
