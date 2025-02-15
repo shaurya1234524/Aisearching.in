@@ -1,7 +1,8 @@
+@@ -1,208 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7277508044418574"
      crossorigin="anonymous"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VL6Q084F8E"></script>
@@ -12,36 +13,40 @@
 
   gtag('config', 'G-VL6Q084F8E');
 </script>
-        
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-        {% block title %}  <title>AI Tools Directory & List of Best Free AI by Category (Top 10) |Aisearchlibrary </title> {% endblock title %}
+        {% block title %}  <title>The ultimate full AI list of all the tools available in a ranking. </title> {% endblock title %}
+        <meta name="description" content="Explore all types of Artificial Intelligence (AI) categorized by type . Available List updated daily and Top 10 by category available.">
+        {% block title %}  <title>AI Tools Directory & List of Best Free AI by Category (Top 10) | Aisearchlibrary.AIsearch library.in </title> {% endblock title %}
         <meta name="description" content="Explore all types of Artificial Intelligence (AI) categorized by type .Access Aisearchlibrary, an AI tools directory featuring the largest list of AI available on the net. A ranking of the best AI to help you in your search.">
         <meta name="keywords" content="Artificial Intelligence, AI types, Ai libraray,AI list, Ultimate list of All AI, AI Categories">
         <meta name="author" content="aisearchlibrary.in">
-        
+
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
+        <meta property="og:title" content="The ultimate full AI list of all the tools available  in a ranking.">
         <meta property="og:title" content="AI Tools Directory & List of Best Free AI by Category (Top 10) | Aisearchlibrary.">
         <meta property="og:description" content="Explore all types of Artificial Intelligence (AI) categorized by type .The ultimate full AI list of all the tools. List updated daily and Top 10 by category available.">
         <meta property="og:image" content="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
         <meta property="og:url" content="https://aisearchlibrary.in">
         <meta property="og:site_name" content="Ai search library">
-    
+
         <!-- Twitter Meta Tags -->
         <meta name="twitter:card" content="ejkac0usmvktzpngwm24.jpg">
+        <meta name="twitter:title" content="The ultimate full AI list of all the tools available in the world in a ranking.">
         <meta name="twitter:title" content="AI Tools Directory & List of Best Free AI by Category (Top 10) | Aisearchlibrary.">
         <meta name="twitter:description" content="Explore all types of Artificial Intelligence (AI) categorized by type .The ultimate full AI list of all the tools available in the world in a ranking. List updated daily and Top 10 by category available.">
         <meta name="twitter:image" content="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
         <meta name="twitter:site" content="shaurya_si54824">
-    
+
         <!-- Canonical URL -->
         <link rel="canonical" href="https://aisearchlibrary.in/">
-    
+
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
-    
+
 
 <script type="application/ld+json">
 {
@@ -62,8 +67,8 @@
 }
 </script>
 
-       
-       
+
+
     </head>
     <body>
         <nav class="navbar naiovbar-expand-lg bg-body-tertiary">
@@ -89,12 +94,12 @@
                       <li class="nav-item">
                           <a class="nav-link" href="blo">Blogs</a>
                         </li>
-                        
+
                     </ul>
-                   
+
                 </div>
             </div>
-            
+
         </nav>
           {% block form %}
 <div class="container-fluid">
@@ -105,75 +110,73 @@
 </div>
                     {% endblock form %}
         {% block body %}
-       
-   
+
+
         {% for displayAI in page_obj %}
 
-   
- <div class="card border-success shadow-sm rounded-3 d-inline-flex text-center m-2" style="width: 18rem;">
-            <!-- Like Counter -->
-            <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
-                ❤️ <span id="likeCount_{{ ai.id }}">{{ ai.likes }}</span>
+            <div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative" style="width: 18rem;">
+                <!-- Like Counter at the Top -->
+                <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
+                    ❤️ <span id="likeCount_{{displayAI.name}}">0</span>
+                </div>
+
+                <div class="d-flex justify-content-center mt-3">
+                    <img src="{{displayAI.image}}" class="rounded-circle border border-2 border-success" 
+                        style="height: 60px; width: 60px;" alt="Profile Image">
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-title text-success fw-bold">{{displayAI.name}}</h5>
+                    <p class="card-text text-muted">{{displayAI.description}}</p>
+                    <h6 class="text-dark">Categories: <span class="fw-semibold">{{displayAI.category}}</span></h6>
+                    <a href="{{displayAI.url}}" class="btn btn-outline-success mt-2">View Details</a>
+
+                    <!-- Like Button -->
+                    <button id="likeButton_{{displayAI.name}}" class="btn btn-outline-danger mt-2" onclick="increaseLikes('{{displayAI.name}}')">
+                        ❤️ Like
+                    </button>
+                </div>
             </div>
 
-            <div class="d-flex justify-content-center mt-3">
-                <img src="{{ ai.image }}" class="rounded-circle border border-2 border-success" 
-                    style="height: 60px; width: 60px;" alt="Profile Image">
-            </div>
 
-            <div class="card-body">
-                <h5 class="card-title text-success fw-bold">{{ ai.name }}</h5>
-                <p class="card-text text-muted">{{ ai.description }}</p>
-                <h6 class="text-dark">Categories: <span class="fw-semibold">{{ ai.category }}</span></h6>
-                <a href="{{ ai.url }}" class="btn btn-outline-success mt-2">View Details</a>
-                
-                <!-- Like Button -->
-                <button id="likeButton_{{ ai.id }}" class="btn btn-outline-danger mt-2" onclick="increaseLikes('{{ ai.id }}')">
-                    ❤️ Like
-                </button>
-            </div>
-        </div>
-    {% endfor %}
-</div>
 
-<!-- JavaScript to Handle Likes -->
 <script>
-    function increaseLikes(aiId) {
-        // Check if the user has already liked this item
-        if (localStorage.getItem(`liked_${aiId}`)) {
-            alert("You have already liked this!");
-            return;
+    function initializeLikes(itemName) {
+        const likeKey = "liked_" + itemName;
+        let likeCount = localStorage.getItem(likeKey) ? 1 : 0;
+
+        document.getElementById("likeCount_" + itemName).innerText = likeCount;
+
+        if (likeCount === 1) {
+            document.getElementById("likeButton_" + itemName).disabled = true;
         }
-
-        // Get the current like count
-        let likeElement = document.getElementById(`likeCount_${aiId}`);
-        let currentLikes = parseInt(likeElement.innerText, 10);
-
-        // Increase the like count
-        currentLikes += 1;
-
-        // Update the UI
-        likeElement.innerText = currentLikes;
-
-        // Disable the button after liking
-        let likeButton = document.getElementById(`likeButton_${aiId}`);
-        likeButton.disabled = true;
-
-        // Store the like in localStorage to prevent multiple likes
-        localStorage.setItem(`liked_${aiId}`, true);
     }
 
-    // Disable buttons for already liked items on page load
+    function increaseLikes(itemName) {
+        const likeKey = "liked_" + itemName;
+
+        if (!localStorage.getItem(likeKey)) {
+            localStorage.setItem(likeKey, "true");
+            document.getElementById("likeCount_" + itemName).innerText = 1;
+            document.getElementById("likeButton_" + itemName).disabled = true;
+        }
+    }
+
+    // Initialize likes for all cards on page load
     document.addEventListener("DOMContentLoaded", function () {
-        {% for ai in top_tools %}
-            if (localStorage.getItem(`liked_{{ ai.id }}`)) {
-                document.getElementById(`likeButton_{{ ai.id }}`).disabled = true;
-            }
-        {% endfor %}
+        initializeLikes("{{displayAI.name}}");
     });
 </script>
 
-       
+<!-- <script>
+    let likeCount = 0;
+    function increaseLikes() {
+        likeCount++;
+        document.getElementById("likeCount").innerText = likeCount;
+    }
+</script> -->
+
+
 
 
         {% endfor %}
@@ -187,11 +190,11 @@
                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
                 </li>
                 {% endif %}
-                
+
                 <li class="page-item disabled">
                     <a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
                 </li>
-                
+
                 {% if page_obj.has_next %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
