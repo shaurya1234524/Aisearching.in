@@ -9,7 +9,7 @@ class AI(models.Model):
     category=models.TextField(default="error 404")
     image = models.ImageField(upload_to='images/',default="error 404")
     url=models.URLField( max_length=200,default="error 404")
-    likes = models.IntegerField(default=0)
+
 
     def __str__(self):
         return self.name
