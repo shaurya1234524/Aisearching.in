@@ -1,5 +1,5 @@
 from django.shortcuts import render 
-from django.http import JsonResponse
+
 from aiexporia import templates
 from django.core.paginator import Paginator
 # Create your views here.
