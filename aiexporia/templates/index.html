@@ -11,8 +11,7 @@
   gtag('js', new Date());
 
   gtag('config', 'G-VL6Q084F8E');
-</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7277508044418574"
-     crossorigin="anonymous"></script>
+</script>
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,24 +42,26 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="https://shaurya-bucket1222333223123.s3.amazonaws.com/ejkac0usmvktzpngwm24.jpg">
     
-        <!-- Schema.org JSON-LD Markup for SEO -->
-    <script type="application/ld+json">
+
+<script type="application/ld+json">
 {
   "@context": "https://schema.org/",
-  "@type": "AI Tools Directory ",
-        
-  "serviceType": "An Comprehensive list of All AI Tools that are available in market ",
-         {% for displayAI in page_obj %}
-   "aitools":{
-        "@type": "{{displayAI.category}}",
-          "name":"{{displayAI.name}}",
-           "description":"{{displayAI.description}}",
-        "image":"{{displayAI.url}}",
-        "category":"{{displayAI.category}}",
-   }
-         {% endfor %}
+  "@type": "AI Tools Directory",
+  "serviceType": "A Comprehensive list of All AI Tools available in the market",
+  "aitools": [
+    {% for displayAI in page_obj %}
+    {
+      "@type": "{{ displayAI.category }}",
+      "name": "{{ displayAI.name }}",
+      "description": "{{ displayAI.description }}",
+      "image": "{{ displayAI.url }}",
+      "category": "{{ displayAI.category }}"
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]
 }
 </script>
+
        
        
     </head>
