@@ -13,11 +13,7 @@ from aiexporiahome.models import AI,blog,indianAI
 # def display(request):
 #     return render(request,"index.html")
 
-def like_ai(request, ai_name):
-    ai = get_object_or_404(AI, name=ai_name)
-    ai.likes += 1
-    ai.save()
-    return JsonResponse({'likes': ai.likes})
+
 def form(request):
     return render(request,"form.html")
 def uploadAI(request):
