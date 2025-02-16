@@ -28,14 +28,11 @@ urlpatterns = [
     path('blo',views.blo,name="blo"),
     path('',include(aiexporiahome.urls)),
     path('india',views.displayin,name="displayin"),
-
+  path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml")),
     path('searchresult',views.searchresults,name="searchresults"),
     path('searchres',views.searchres,name="searchres"),
     path('searchresultsss',views.searchresultsss,name="searchresultsss"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
-urlpatterns = [
-    path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml")),
-]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
+  
+
