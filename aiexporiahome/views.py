@@ -1,8 +1,9 @@
 from django.shortcuts import render 
-
+from django.http import JsonResponse
 from aiexporia import templates
 from django.core.paginator import Paginator
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404,HttpResponse
 from django.http import JsonResponse
 from django.db.models import Q
@@ -12,7 +13,7 @@ from django.db.models import Q
 from aiexporiahome.models import AI,blog,indianAI
 # def display(request):
 #     return render(request,"index.html")
-
+@csrf_exempt
 
 def form(request):
     return render(request,"form.html")
@@ -27,7 +28,7 @@ def uploadAI(request):
     formsubmit.save()
     return HttpResponse("form submitted successfully")
 def display(request):
-    displayAI=AI.objects.all()
+    displayAI=AI.objects.all().order_by('-like_count') 
   
     paginator=Paginator(displayAI,30)
     page_number = request.GET.get('page')
@@ -48,7 +49,7 @@ def blo(request):
     return render(request,'blo.html',{'page_obj': page_obj}) 
 
 def displayin(request):
-    displayinAI=indianAI.objects.all()
+    displayinAI=indianAI.objects.all().order_by('-like_count') 
     
     paginator=Paginator(displayinAI,30)
     page_number = request.GET.get('page')
@@ -58,7 +59,7 @@ def displayin(request):
 def searchresults(request):
     if request.method=='GET':
       query=request.GET.get("search")
-      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query))
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
       paginator=Paginator(displayAI,30)
       page_number = request.GET.get('page')
       page_obj = paginator.get_page(page_number)
@@ -67,7 +68,7 @@ def searchresults(request):
 def searchres(request):
      if request.method=='GET':
       query=request.GET.get("searches")
-      displayinAI=indianAI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query))
+      displayinAI=indianAI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
       paginator=Paginator(displayinAI,30)
       page_number = request.GET.get('page')
       page_obj = paginator.get_page(page_number)
@@ -82,3 +83,100 @@ def searchresultsss(request):
          page_obj = paginator.get_page(page_number)
     # context={'displayAI':displayAI}
          return render(request,'blo.html',{'page_obj': page_obj}) 
+
+def code(request):
+    if request.method=='GET':
+      query="coding"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'Coding.html',{'page_obj': page_obj}) 
+def NewAi(request):
+    if request.method=='GET':
+      query="new Ai"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'NewAI.html',{'page_obj': page_obj}) 
+def Imagegen(request):
+    if request.method=='GET':
+      query="Image"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'ImageGenerate.html',{'page_obj': page_obj}) 
+def MusicsAi(request):
+    if request.method=='GET':
+      query="Music"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'Music.html',{'page_obj': page_obj}) 
+      
+def VideoGeneration(request):
+    if request.method=='GET':
+      query="Video"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'VideoGeneration.html',{'page_obj': page_obj}) 
+
+def Study(request):
+    if request.method=='GET':
+      query="Study"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'StudyAi.html',{'page_obj': page_obj}) 
+def chatbot(request):
+    if request.method=='GET':
+      query="chatbot"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'Chatbot.html',{'page_obj': page_obj}) 
+def buisnesses(request):
+    if request.method=='GET':
+      query="business"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'Chatbot.html',{'page_obj': page_obj}) 
+def HomeworkAi(request):
+    if request.method=='GET':
+      query="homework"
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'Homework.html',{'page_obj': page_obj}) 
+
+def increase_like(request, ai_id):
+    if request.method == "POST":
+        try:
+            ai_tool = AI.objects.get(id=ai_id)  # Query the AI model (AI_TOOL in your case)
+            ai_tool.like_count += 1  # Increment the like count
+            ai_tool.save()  # Save the updated AI object
+            return JsonResponse({'like_count': ai_tool.like_count})  # Return the updated like count
+        except AI.DoesNotExist:
+            return JsonResponse({'error': 'AI tool not found'}, status=404)
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
+      
+      

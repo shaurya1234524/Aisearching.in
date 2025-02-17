@@ -1,0 +1,97 @@
+{% extends "index.html" %}
+{% block title %}
+<!-- SEO Title -->
+<title>Best New Study AI Tools 2025 | Top AI Tools for Students and Learners</title>
+
+<!-- Meta Description -->
+<meta name="description" content="Discover the best new and trending Study AI tools for 2025. Explore AI-powered tools designed to enhance learning, improve study efficiency, and boost academic performance for students.">
+
+<!-- Meta Keywords -->
+<meta name="keywords" content="Study AI tools, best AI tools for students, new AI tools for learning, AI tools for academic success, AI-powered study tools, AI for education, 2025 study AI tools, AI tools for exam preparation, AI learning assistants, AI tools for productivity in studies">
+
+
+{% endblock title%}
+{% block form %}
+
+<div class="container-fluid my-2">
+<form class="d-flex" action="searchresult" method="get"role="search">
+<input class="form-control me-2" name="search" type="search" placeholder="Search Ai Name /category " aria-label="Search">
+<button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+</div>
+
+{% endblock form %}
+
+{% block body %}
+
+<div class="justify-content-center">
+  {% for displayAI in page_obj %}
+  <div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative mx-1 my-1" style="width: 18rem;">
+      <!-- Like Counter at the Top -->
+      <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
+          ❤️ <span id="likeCount_{{ displayAI.id }}">{{ displayAI.like_count }}</span>
+      </div>
+
+      <div class="d-flex justify-content-center mt-3">
+          <img src="{{ displayAI.image }}" class="rounded-circle border border-2 border-success" 
+          style="height: 60px; width: 60px;" alt="Profile Image">
+      </div>
+
+      <div class="card-body">
+          <h5 class="card-title text-success fw-bold">{{ displayAI.name }}</h5>
+          <p class="card-text text-muted">{{ displayAI.description }}</p>
+          <h6 class="text-dark">Categories: <span class="fw-semibold">{{ displayAI.category }}</span></h6>
+          <a href="{{ displayAI.url }}" class="btn btn-outline-success mt-2">View Details</a>
+
+          <!-- Like Button -->
+          <button id="likeButton_{{ displayAI.id }}" class="btn btn-outline-danger mt-2" onclick="increaseLikes({{ displayAI.id }})">
+              ❤️ Like
+          </button>
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- CSRF Token (Place it here to ensure it's available globally in the page) -->
+<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+<script>
+function increaseLikes(aiId) {
+    const likeButton = document.getElementById("likeButton_" + aiId);
+    const likeCountElement = document.getElementById("likeCount_" + aiId);
+    
+    // Disable the like button immediately
+    likeButton.disabled = true;
+
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    fetch(`/increase-like/${aiId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken  // Pass the CSRF token in the headers
+        },
+    })
+    .then(response => {
+        // Check if response is not JSON
+        if (!response.ok) {
+            return response.text().then(text => {
+                throw new Error(text);  // This will show the HTML error response
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Update the like count on the page
+        likeCountElement.innerText = data.like_count;
+    })
+    .catch(error => {
+        console.error('Error:', error);  // Log the error (HTML response or JSON error)
+        // Optionally, you could re-enable the button here in case of an error:
+        likeButton.disabled = false;
+    });
+}
+</script>
+
+
+{% endblock body %}
