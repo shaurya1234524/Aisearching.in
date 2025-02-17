@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'storages',
     
 ]
-AWS_ACCESS_KEY_ID = 'AKIAXGZAMJS7ORC3OGNQ' 
-AWS_SECRET_ACCESS_KEY = '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' 
+AWS_ACCESS_KEY_ID = 'AKIAXGZAMJS7NADQ6M5S' 
+AWS_SECRET_ACCESS_KEY = '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' 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
