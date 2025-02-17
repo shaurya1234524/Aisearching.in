@@ -15,7 +15,8 @@ from aiexporiahome.models import AI,blog,indianAI
 # def display(request):
 #     return render(request,"index.html")
 @csrf_exempt
-
+def sitemap(def):
+    return render(request,'sitemap.xml')
 def form(request):
     return render(request,"form.html")
 def uploadAI(request):
