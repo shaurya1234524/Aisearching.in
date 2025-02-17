@@ -38,7 +38,7 @@ urlpatterns = [
                       path('Buisnesses',views.buisnesses,name="Buisnesses"),
                           path('increase-like/<int:ai_id>/', views.increase_like, name='increase_like'),
                            path('HomeworkAi',views.HomeworkAi,name="HomeworkAi"),
-  path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml")),
+  path('sitemap.xml',view.sitemap,name="sitemap.xml"),
 
     path('searchresult',views.searchresults,name="searchresults"),
     path('searchres',views.searchres,name="searchres"),
