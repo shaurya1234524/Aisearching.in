@@ -38,7 +38,7 @@ urlpatterns = [
     path('Buisnesses',views.buisnesses,name="Buisnesses"),
     path('increase-like/<int:ai_id>/', views.increase_like, name='increase_like'),
     path('HomeworkAi',views.HomeworkAi,name="HomeworkAi"),
-    path('sitemap.xml', lambda x: HttpResponse(open('https://shaurya-bucket1222333223123.s3.eu-north-1.amazonaws.com/sitemap.xml').read(), content_type='application/xml')),
+    path('sitemapss.xml', lambda x: HttpResponse(open('https://shaurya-bucket1222333223123.s3.eu-north-1.amazonaws.com/sitemap.xml').read(), content_type='application/xml')),
 
     path('searchresult',views.searchresults,name="searchresults"),
     path('searchres',views.searchres,name="searchres"),
