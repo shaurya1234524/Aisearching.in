@@ -11,8 +11,7 @@ from django.db.models import Q
 
 
 from aiexporiahome.models import AI,blog,indianAI
-def sitemap(request):
-    return render(request,"https://shaurya-bucket1222333223123.s3.eu-north-1.amazonaws.com/sitemap.xml")
+
 # def display(request):
 #     return render(request,"index.html")
 @csrf_exempt
