@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 {% block style %}Ai search library blogs
-<link rel="canonical" href="https://aisearchlibrary.in/blo" />
+<link rel="canonical" href="https://aisearchlibrary.in/blo{{ request.path|add:"/" }}" />
 {% endblock style %}
 {% block form %}
 <form class="d-flex" action="searchresultsss" mehthod="get"role="search">
