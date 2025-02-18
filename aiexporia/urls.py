@@ -21,7 +21,7 @@ from aiexporiahome import views
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from django.conf.urls.static import static
-from .views import robots_txt,sitemap
+from aiexporiahome.views import robots_txt,sitemap
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('uploadAI',views.uploadAI,name="uploadAI"),
