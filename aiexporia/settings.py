@@ -60,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'aiexporia.urls'
-APPEND_SLASH = False
+
 import environ
 env=environ.Env()
 environ.Env.read_env()
