@@ -12,8 +12,12 @@ from django.db.models import Q
 
 from aiexporiahome.models import AI,blog,indianAI
 
-# def display(request):
-#     return render(request,"index.html")
+def robots_txt(request):
+    context = {
+        "allow_indexing": True,  # Change based on your logic
+        "sitemap_url": "https://www.aisearchlibrary/sitemap.xml",
+    }
+    return render(request, "robots.txt", context, content_type="text/plain")
 @csrf_exempt
 def sitemap(request):
     return render(request,'sitemap.xml')
