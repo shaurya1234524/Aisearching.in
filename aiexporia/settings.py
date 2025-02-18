@@ -49,7 +49,7 @@ AWS_SECRET_ACCESS_KEY = 'epCjX2suMhiHE9yc8jXpvpK7WdIDXv08gsHbfSaU'
 
 MIDDLEWARE = [
         'django.middleware.common.CommonMiddleware',  # This is important to leave in place
-    'aiexporia.middleware.TrailingSlashMiddleware',   # Add this line here
+    'aiexporiahome.middleware.TrailingSlashMiddleware',   # Add this line here
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
