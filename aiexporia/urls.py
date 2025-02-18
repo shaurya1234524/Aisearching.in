@@ -40,9 +40,9 @@ urlpatterns = [
     path('HomeworkAi/',views.HomeworkAi,name="HomeworkAi"),
 path('sitemap.xml/',views.sitemap,name="sitemap"),
  path("robots.txt/", views.robots_txt, name="robots_txt"),
-    path('searchresult',views.searchresults,name="searchresults"),
-    path('searchres',views.searchres,name="searchres"),
-    path('searchresultsss',views.searchresultsss,name="searchresultsss"),
+    path('searchresult/',views.searchresults,name="searchresults"),
+    path('searchres/',views.searchres,name="searchres"),
+    path('searchresultsss/',views.searchresultsss,name="searchresultsss"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
   
