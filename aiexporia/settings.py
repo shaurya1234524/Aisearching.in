@@ -48,8 +48,7 @@ AWS_ACCESS_KEY_ID = 'AKIAXGZAMJS7NADQ6M5S'
 AWS_SECRET_ACCESS_KEY = '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' 
 
 MIDDLEWARE = [
-        'django.middleware.common.CommonMiddleware',  # This is important to leave in place
-    'aiexporiahome.middleware.TrailingSlashMiddleware',   # Add this line here
+
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,7 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'aiexporia.urls'
-APPEND_SLASH = True
+APPEND_SLASH = False
 import environ
 env=environ.Env()
 environ.Env.read_env()
