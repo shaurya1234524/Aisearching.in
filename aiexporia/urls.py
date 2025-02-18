@@ -39,7 +39,7 @@ urlpatterns = [
     path('increase-like/<int:ai_id>/', views.increase_like, name='increase_like'),
     path('HomeworkAi',views.HomeworkAi,name="HomeworkAi"),
 path('sitemap.xml',views.sitemap,name="sitemap.xml"),
-path('robots.txt',views.robots,name="robots.txt"),
+
     path('searchresult',views.searchresults,name="searchresults"),
     path('searchres',views.searchres,name="searchres"),
     path('searchresultsss',views.searchresultsss,name="searchresultsss"),
