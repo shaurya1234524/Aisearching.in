@@ -28,26 +28,26 @@ class indianAI(models.Model):
     like_count = models.IntegerField(default=0)  # Store the like count
     def __str__(self):
         return self.name
-class AIToolRating(models.Model):
-    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="ratings")
-    parameter = models.CharField(max_length=255)
-    rating = models.IntegerField()
+# class AIToolRating(models.Model):
+#     tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="ratings")
+#     parameter = models.CharField(max_length=255)
+#     rating = models.IntegerField()
 
-    def __str__(self):
-        return f"{self.tool.name} - {self.parameter}: {self.rating}"
+#     def __str__(self):
+#         return f"{self.tool.name} - {self.parameter}: {self.rating}"
 
-# AI Tool Advantages
-class AIToolAdvantage(models.Model):
-    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="advantages")
-    text = models.TextField()
+# # AI Tool Advantages
+# class AIToolAdvantage(models.Model):
+#     tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="advantages")
+#     text = models.TextField()
 
-    def __str__(self):
-        return f"Advantage of {self.tool.name}"
+#     def __str__(self):
+#         return f"Advantage of {self.tool.name}"
 
-# AI Tool Disadvantages
-class AIToolDisadvantage(models.Model):
-    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="disadvantages")
-    text = models.TextField()
+# # AI Tool Disadvantages
+# class AIToolDisadvantage(models.Model):
+#     tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="disadvantages")
+#     text = models.TextField()
 
-    def __str__(self):
-        return f"Disadvantage of {self.tool.name}"
+#     def __str__(self):
+#         return f"Disadvantage of {self.tool.name}"
