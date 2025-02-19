@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'storages',
     
 ]
-AWS_ACCESS_KEY_ID = 'AKIAXGZAMJS7NADQ6M5S' 
-AWS_SECRET_ACCESS_KEY = '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' 
+AWS_ACCESS_KEY_ID = 'AKIAXGZAMJS7FXWLMXNQ' 
+AWS_SECRET_ACCESS_KEY = 'ajmmAZhTYq8Ulq+l7u65pLGtRz7L9cw2v3zPM3Io' 
 
 MIDDLEWARE = [
 
@@ -69,7 +69,7 @@ AWS_STORAGE_BUCKET_NAME = 'shaurya-bucket1222333223123' # - Enter your S3 bucket
 
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 
-AWS_S3_FILE_OVERWRITE = False
+AWS_S3_FILE_OVERWRITE = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
