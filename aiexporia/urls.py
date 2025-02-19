@@ -37,7 +37,6 @@ urlpatterns = [
     path('chatbot',views.chatbot,name="chatbot"),
     path('Buisnesses',views.buisnesses,name="Buisnesses"),
     path('increase-like/<int:ai_id>', views.increase_like, name='increase_like'),
-        path('ai-analysis/<str:tool_name>', views.ai_tool_analysis, name="ai_tool_analysis"),
     path('HomeworkAi',views.HomeworkAi,name="HomeworkAi"),
   path('sitemap.xml',views.sitemap,name="sitemap"),
  path("robots.txt", views.robots_txt, name="robots_txt"),
