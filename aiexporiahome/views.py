@@ -186,6 +186,8 @@ def increase_like(request, ai_id):
             return JsonResponse({'error': 'AI tool not found'}, status=404)
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 def ai_tool_analysis(request, tool_name):
+   
+  
     print(tool_name)
     # Fetch the AI tool data
     tool = get_object_or_404(AI,name=tool_name)
@@ -194,9 +196,12 @@ def ai_tool_analysis(request, tool_name):
     ratings = tool.ratings.all()
     advantages = tool.advantages.all()
     disadvantages = tool.disadvantages.all()
+    
+    displayAIinfo=AI.objects.filter(Q(name__icontains=tool.name)|Q(description__icontains=tool.name)|Q(category__icontains=query.name))
 
     # Prepare data for the template
     analysis_data = {
+        "displayAIinfo":displayAIinfo,
         "tool": tool,
         "ratings": ratings,
         "advantages": advantages,
