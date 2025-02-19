@@ -29,25 +29,25 @@ class indianAI(models.Model):
     def __str__(self):
         return self.name
 class AIToolRating(models.Model):
-    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="ratings")
-    parameter = models.CharField(max_length=255)
-    rating = models.IntegerField()
+    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="ratings",default="Error")
+    parameter = models.CharField(max_length=255,default="error")
+    rating = models.IntegerField(default="error")
 
     def __str__(self):
         return f"{self.tool.name} - {self.parameter}: {self.rating}"
 
 # AI Tool Advantages
 class AIToolAdvantage(models.Model):
-    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="advantages")
-    text = models.TextField()
+    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="advantages",default="error")
+    text = models.TextField(default="error")
 
     def __str__(self):
         return f"Advantage of {self.tool.name}"
 
 # AI Tool Disadvantages
 class AIToolDisadvantage(models.Model):
-    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="disadvantages")
-    text = models.TextField()
+    tool = models.ForeignKey(AI, on_delete=models.CASCADE, related_name="disadvantages",default="error")
+    text = models.TextField(default="error")
 
     def __str__(self):
         return f"Disadvantage of {self.tool.name}"
