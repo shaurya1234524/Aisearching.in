@@ -41,7 +41,7 @@ urlpatterns = [
     path('HomeworkAi',views.HomeworkAi,name="HomeworkAi"),
   path('sitemap.xml',views.sitemap,name="sitemap"),
  path("robots.txt", views.robots_txt, name="robots_txt"),
-  path("ai-analysis/<str:tool_name>",views.analyzing,name="analyzing"),
+
  path("ai-analysis/<str:tool_name>",views.ai_tool_analysis,name="ai_tool_analysis"),
     path('searchresult',views.searchresults,name="searchresults"),
     path('searchres',views.searchres,name="searchres"),
