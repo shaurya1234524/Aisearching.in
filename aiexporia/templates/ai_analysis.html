@@ -88,14 +88,14 @@
 
     <h2 class="mt-5">✅ Advantages</h2>
     <ul class="list-group">
-        {% for advantage in advantages.all() %}
+        {% for advantage in advantages %}
             <li class="list-group-item list-group-item-success">{{ advantage.text }}</li>
         {% endfor %}
     </ul>
 
     <h2 class="mt-5">❌ Disadvantages</h2>
     <ul class="list-group">
-        {% for disadvantage in disadvantages.all() %}
+        {% for disadvantage in disadvantages %}
             <li class="list-group-item list-group-item-danger">{{ disadvantage.text }}</li>
         {% endfor %}
     </ul>
@@ -104,7 +104,7 @@
 <script>
     // Fetch Data from Django Context
     const parameters = [
-        {% for rating in ratings.all() %}
+        {% for rating in ratings%}
             { name: "{{ rating.parameter }}", rating: {{ rating.rating }} },
         {% endfor %}
     ];
