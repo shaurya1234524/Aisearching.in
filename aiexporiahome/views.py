@@ -11,7 +11,8 @@ from django.db.models import Q
 
 
 from aiexporiahome.models import AI,blog,indianAI
-
+def ad(request):
+    return render(request,'ads.txt')
 def robots_txt(request):
     context = {
         "allow_indexing": True,  # Change based on your logic
