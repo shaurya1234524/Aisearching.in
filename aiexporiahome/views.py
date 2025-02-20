@@ -213,7 +213,7 @@ def ai_tool_analysis(request, tool_name):
         "disadvantages": disadvantages
     }
 
-    return render(request,'ai_analysis.html,context)
+    return render(request,'ai_analysis.html',context)
     
 
       
