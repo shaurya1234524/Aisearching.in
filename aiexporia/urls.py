@@ -33,6 +33,7 @@ urlpatterns = [
     path('MusicsAi',views.MusicsAi,name="MusicsAi"),
     path('Imagegen',views.Imagegen,name="Imagegen"),
     path('VideoGeneration',views.VideoGeneration,name="VideoGeneration"),
+    path('ads.txt',view.ad,name="ad"),
     path('Study',views.Study,name="Study"),
     path('chatbot',views.chatbot,name="chatbot"),
     path('Buisnesses',views.buisnesses,name="Buisnesses"),
