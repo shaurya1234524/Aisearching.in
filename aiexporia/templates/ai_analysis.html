@@ -1,9 +1,9 @@
  {% extends "index.html" %}
 
 {% block title %}
- <title>{{ analysis.tool.name }} - AI Analysis</title>
- <meta name="description" content=" {{ analysis.tool.name }} is a powerful AI writing assistant designed for content creators, marketers, and businesses. It helps generate high-quality blog posts, social media content, and marketing copy with ease. Gerating code">
- <meta name="keywords" content="{{ analysis.tool.name }}, AI writing tool, AI copywriting, content generation, AI marketing tool, AI blog writer, AI-powered writing assistant, AI content creation, best AI copywriter","coding","coder","programmer">
+ <title>{{ tool.name }} - Complete best  AI Analysis||Aisearchlibrary</title>
+ <meta name="description" content=" {{ tool.name }} is {{tool.description}}">
+ <meta name="keywords" content="{{ tool.name }},AI writing tool, AI copywriting, content generation, AI marketing tool, AI blog writer, AI-powered writing assistant, AI content creation, best AI copywriter","coding","coder","programmer">
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
  
  
@@ -29,30 +29,30 @@
 
 
 
-{% for displayAI in page_obj %}
+
 <div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative mx-1 my-1" style="width: 18rem;">
     <!-- Like Counter at the Top -->
     <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
-        ❤️ <span id="likeCount_{{ displayAI.id }}">{{ displayAI.like_count }}</span>
+        ❤️ <span id="likeCount_{{ tool.id }}">{{ tool.like_count }}</span>
     </div>
-    {{ displayAI.id }}
+    {{ tool.id }}
     <div class="d-flex justify-content-center mt-3">
-        <img src="{{ displayAI.image }}" class="rounded-circle border border-2 border-success" 
+        <img src="{{ tool.image }}" class="rounded-circle border border-2 border-success" 
         style="height: 60px; width: 60px;" alt="Profile Image">
     </div>
 
     <div class="card-body">
-        <h5 class="card-title text-success fw-bold">{{ displayAI.name }}</h5>
-        <p class="card-text text-muted">{{ displayAI.description }}</p>
-        <h6 class="text-dark">Categories: <span class="fw-semibold">{{ displayAI.category }}</span></h6>
-        <a href="{{ displayAI.url }}" class="btn btn-outline-success mt-2">View Details</a>
+        <h5 class="card-title text-success fw-bold">{{ tool.name }}</h5>
+        <p class="card-text text-muted">{{ tool.description }}</p>
+        <h6 class="text-dark">Categories: <span class="fw-semibold">{{ tool.category }}</span></h6>
+        <a href="{{ tool.url }}" class="btn btn-outline-success mt-2">View Details</a>
 
         <!-- Like & Info Buttons -->
         <div class="d-flex justify-content-between mt-2">
-            <button id="likeButton_{{ displayAI.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ displayAI.id }})">
+            <button id="likeButton_{{ tool.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ tool.id }})">
                 ❤️ Like
             </button>
-            <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#infoModal_{{ displayAI.id }}">
+            <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#infoModal_{{ tool.id }}">
                 ℹ Info
             </button>
         </div>
@@ -60,17 +60,17 @@
 </div>
 
 <!-- Info Modal -->
-<div class="modal fade" id="infoModal_{{ displayAI.id }}" tabindex="-1" aria-labelledby="infoModalLabel_{{ displayAI.id }}" aria-hidden="true">
+<div class="modal fade" id="infoModal_{{ tool.id }}" tabindex="-1" aria-labelledby="infoModalLabel_{{ tool.id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel_{{ displayAI.id }}">{{ displayAI.name }} - Info</h5>
+                <h5 class="modal-title" id="infoModalLabel_{{ tool.id }}">{{ tool.name }} - Info</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <strong>Category:</strong> {{ displayAI.category }} <br>
-                <strong>Description:</strong> {{ displayAI.description }} <br>
-                <strong>Website:</strong> <a href="{{ displayAI.url }}" target="_blank">{{ displayAI.url }}</a>
+                <strong>Category:</strong> {{ tool.category }} <br>
+                <strong>Description:</strong> {{ tool.description }} <br>
+                <strong>Website:</strong> <a href="{{ tool.url }}" target="_blank">{{ tool.url }}</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -78,25 +78,24 @@
         </div>
     </div>
 </div>
-{% endfor %} 
 
 <div class="container">
-    <h1 class="mb-4 ">{{ analysis.tool.name }}- AI Analysis</h1>
-    <p class="text-center">{{ analysis.tool.description }}</p>
+    <h1 class="mb-4 ">{{ tool.name }}- AI Analysis</h1>
+    <p class="text-center">{{ tool.description }}</p>
 
     <h2 class="mt-4">📊 Ratings Overview</h2>
     <canvas id="ratingChart"></canvas>
 
     <h2 class="mt-5">✅ Advantages</h2>
     <ul class="list-group">
-        {% for advantage in analysis.advantages %}
+        {% for advantage in tool.advantages %}
             <li class="list-group-item list-group-item-success">{{ advantage.text }}</li>
         {% endfor %}
     </ul>
 
     <h2 class="mt-5">❌ Disadvantages</h2>
     <ul class="list-group">
-        {% for disadvantage in analysis.disadvantages %}
+        {% for disadvantage in tool.disadvantages %}
             <li class="list-group-item list-group-item-danger">{{ disadvantage.text }}</li>
         {% endfor %}
     </ul>
@@ -105,7 +104,7 @@
 <script>
     // Fetch Data from Django Context
     const parameters = [
-        {% for rating in analysis.ratings %}
+        {% for rating in tool.ratings %}
             { name: "{{ rating.parameter }}", rating: {{ rating.rating }} },
         {% endfor %}
     ];
