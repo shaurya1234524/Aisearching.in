@@ -173,7 +173,8 @@ def HomeworkAi(request):
       page_number = request.GET.get('page')
       page_obj = paginator.get_page(page_number)
     # context={'displayAI':displayAI}
-      return render(request,'Homework.html',{'page_obj': page_obj}) 
+      return render(request,'Homework.html',{'page_obj': page_obj})
+
 
 def increase_like(request, ai_id):
     if request.method == "POST":
@@ -185,6 +186,18 @@ def increase_like(request, ai_id):
         except AI.DoesNotExist:
             return JsonResponse({'error': 'AI tool not found'}, status=404)
     return JsonResponse({'error': 'Invalid request method'}, status=400)
+
+def analyzing(request,tool_name):
+      
+      query=tool_name
+      displayAI=AI.objects.filter(Q(name__icontains=query)|Q(description__icontains=query)|Q(category__icontains=query)).order_by('-like_count') 
+      paginator=Paginator(displayAI,30)
+      page_number = request.GET.get('page')
+      page_obj = paginator.get_page(page_number)
+    # context={'displayAI':displayAI}
+      return render(request,'ai_analysis.html',{'page_obj': page_obj}) 
+
+
 def ai_tool_analysis(request, tool_name):
    
   
@@ -196,18 +209,18 @@ def ai_tool_analysis(request, tool_name):
     ratings = tool.ratings.all()
     advantages = tool.advantages.all()
     disadvantages = tool.disadvantages.all()
-    
-    displayAIinfo=AI.objects.filter(Q(name__icontains=tool.name)|Q(description__icontains=tool.name)|Q(category__icontains=query.name))
+
 
     # Prepare data for the template
-    analysis_data = {
-        "displayAIinfo":displayAIinfo,
+    context = {
+     
         "tool": tool,
         "ratings": ratings,
         "advantages": advantages,
         "disadvantages": disadvantages
     }
 
-    return render(request,'ai_analysis.html', {"analysis": analysis_data})
+    return render(request,'ai_analysis.html', {"analysis": context})
+    
 
       
