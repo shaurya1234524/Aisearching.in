@@ -7,7 +7,7 @@ class AI(models.Model):
     name= models.CharField(max_length=255,default="error 404")
     description = models.TextField(default="error 404")
     category=models.TextField(default="error 404")
-    image = models.ImageField(upload_to='images/',default="error 404")
+    image = models.ImageField(upload_to='s3://shaurya-bucket-5763394/admin/img/',default="error 404")
     url=models.URLField( max_length=200,default="error 404")
     like_count = models.IntegerField(default=0)  # Store the like count
 
