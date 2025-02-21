@@ -196,7 +196,7 @@ def ai_tool_analysis(request, tool_name):
   
 
     # Fetch the AI tool data
-    tool = get_object_or_404(AI,name=tool_name)
+    tool = AI.objects.filter(name=tool_name)
     
     # Fetch related data
     ratings = tool.ratings.all()
