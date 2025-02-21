@@ -28,6 +28,7 @@ urlpatterns = [
     path('blo',views.blo,name="blo"),
     path('',include(aiexporiahome.urls)),
     path('india',views.displayin,name="displayin"),
+    path("form.html",views.form,name="form"),
     path('NewAi',views.NewAi,name="NewAi"),
     path('code',views.code,name="code"),
     path('MusicsAi',views.MusicsAi,name="MusicsAi"),
