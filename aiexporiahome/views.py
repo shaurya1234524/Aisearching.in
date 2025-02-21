@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404,HttpResponse
 from django.http import JsonResponse
 from django.db.models import Q
 
-
+from aiexporiahome.models import  AIToolAdvantage,AIToolDisadvantage,AIToolRating
 
 from aiexporiahome.models import AI,blog,indianAI
 def ad(request):
@@ -196,7 +196,7 @@ def ai_tool_analysis(request, tool_name):
   
 
     # Fetch the AI tool data
-    tool = get_object_or_404(name=tool_name)
+    tool = get_object_or_404(AI,name=tool_name)
     
     # Fetch related data
     ratings = tool.ratings.all()
