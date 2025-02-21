@@ -13,7 +13,7 @@ gtag('js', new Date());
 
 gtag('config', 'G-VL6Q084F8E');
 </script>
-
+<script src="https://shaurya-bucket1222333223123.s3.eu-north-1.amazonaws.com/admin/js/load.js"></script>
 <meta charset="UTF-8">
 <meta name="google-adsense-account" content="ca-pub-7277508044418574">
 <link rel="stylesheet"   href="https://shaurya-bucket-5763394.s3.eu-north-1.amazonaws.com/admin/css/footer.css">
@@ -205,44 +205,6 @@ gtag('config', 'G-VL6Q084F8E');
 
 <!-- CSRF Token (Place it here to ensure it's available globally in the page) -->
 <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-
-<script>
-function increaseLikes(aiId) {
-    const likeButton = document.getElementById("likeButton_" + aiId);
-    const likeCountElement = document.getElementById("likeCount_" + aiId);
-    
-    // Disable the like button immediately
-    likeButton.disabled = true;
-
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-    fetch(`/increase-like/${aiId}/`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken  // Pass the CSRF token in the headers
-        },
-    })
-    .then(response => {
-        // Check if response is not JSON
-        if (!response.ok) {
-            return response.text().then(text => {
-                throw new Error(text);  // This will show the HTML error response
-            });
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Update the like count on the page
-        likeCountElement.innerText = data.like_count;
-    })
-    .catch(error => {
-        console.error('Error:', error);  // Log the error (HTML response or JSON error)
-        // Optionally, you could re-enable the button here in case of an error:
-        likeButton.disabled = false;
-    });
-}
-</script>
 
 
 
