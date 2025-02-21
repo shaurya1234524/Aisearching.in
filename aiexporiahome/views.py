@@ -176,7 +176,8 @@ def HomeworkAi(request):
     # context={'displayAI':displayAI}
       return render(request,'Homework.html',{'page_obj': page_obj})
 
-
+def form(request):
+    return render(request,"form.html")
 def increase_like(request, ai_id):
     if request.method == "POST":
         try:
