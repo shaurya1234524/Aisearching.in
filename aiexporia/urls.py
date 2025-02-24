@@ -21,6 +21,8 @@ from aiexporiahome import views
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from django.conf.urls.static import static
+from aiexporiahome.views import like_ai
+
 from aiexporiahome.views import robots_txt,sitemap
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -38,7 +40,7 @@ urlpatterns = [
     path('Study',views.Study,name="Study"),
     path('chatbot',views.chatbot,name="chatbot"),
     path('Buisnesses',views.buisnesses,name="Buisnesses"),
-    path('increase-like/<int:ai_id>', views.increase_like, name='increase_like'),
+  path('like/<int:ai_id>/', like_ai, name='like-ai'),
     path('HomeworkAi',views.HomeworkAi,name="HomeworkAi"),
   path('sitemap.xml',views.sitemap,name="sitemap"),
  path("robots.txt", views.robots_txt, name="robots_txt"),

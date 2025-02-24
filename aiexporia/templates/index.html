@@ -71,19 +71,23 @@
 }
 </script>
 
-<link rel="stylesheet" href="https://shaurya-bucket-5763394.s3.eu-north-1.amazonaws.com/admin/css/header.css">
-        <script src="https://shaurya-bucket-5763394.s3.eu-north-1.amazonaws.com/admin/js/header.js"></script>
-{%block style %}
-     <style>
-          
-     </style>{% endblock style %}
+
+<style>
+  @media only screen and (max-width:576px){
+    .card-container{
+      align-items:center;
+      margin-left:20px;
+    }
+  }
+</style>
 </head>
 <body>
+  <header>
 <nav class="navbar naiovbar-expand-lg bg-body-tertiary">
 <div class="container-fluid">
 {% load static %}
-<img src="{% static 'ejkac0usmvktzpngwm24.jpg' %}" alt="My image" height="10%" width="10%">
-<a class="navbar-brand" href="/">ALL AI LISTS</a>
+<img src="{% static 'ejkac0usmvktzpngwm24.jpg' %}" alt="My image" height="9%" width="9%">
+<a class="navbar-brand" href="/"><h1 style="display:inline;font-sze:20px;">Ai library</h1></a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 <span class="navbar-toggler-icon"></span>
 </button>
@@ -159,71 +163,74 @@
 </form>
 </div>
 
+</header>
 {% endblock form %}
-          <div class="text-container">
-    <h1>
-      <span class="prefix">AI Tools </span>
-      <div class="message">
-        <div class="word1">coding</div>
-        <div class="word2">Image</div>
-        <div class="word3">maths</div>
-        <div class="word4">Study</div>
-      
-      </div>
-    </h1>
-  </div>
+<main>
+  <h2 style="text-align:center;margin-top:10px;margin-bottom:10px;">Access Any Best AI tools of 2025</h2>
 
 {% block body %}
 
-<div class="justify-content-center">
+<div class="card-container">
   {% for displayAI in page_obj %}
+    <div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative mx-1 my-1" style="width: 18rem;">
+      
+        <!-- Like Counter at the Top -->
+        <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
+            ❤️ <span id="likeCount_{{ displayAI.id }}">{{ displayAI.like_count }}</span>
+        </div>
 
-<div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative mx-1 my-1" style="width: 18rem;">
-    <!-- Like Counter at the Top -->
-    <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
-        ❤️ <span id="likeCount_{{ displayAI.id }}">{{ displayAI.like_count }}</span>
-    </div>
+        <div class="d-flex justify-content-center mt-3">
+            <img src="{{ displayAI.image }}" class="rounded-circle border border-2 border-success" 
+            style="height: 60px; width: 60px;" alt="Profile Image">
+        </div>
 
-    <div class="d-flex justify-content-center mt-3">
-        <img src="{{ displayAI.image }}" class="rounded-circle border border-2 border-success" 
-        style="height: 60px; width: 60px;" alt="Profile Image">
-    </div>
+        <div class="card-body">
+            <h5 class="card-title text-success fw-bold">{{ displayAI.name }}</h5>
+            <p class="card-text text-muted">{{ displayAI.description }}</p>
+            <h6 class="text-dark">Categories: <span class="fw-semibold">{{ displayAI.category }}</span></h6>
+            <a href="{{ displayAI.url }}" class="btn btn-outline-success mt-2">View Details</a>
 
-    <div class="card-body">
-        <h5 class="card-title text-success fw-bold">{{ displayAI.name }}</h5>
-        <p class="card-text text-muted">{{ displayAI.description }}</p>
-        <h6 class="text-dark">Categories: <span class="fw-semibold">{{ displayAI.category }}</span></h6>
-        <a href="{{ displayAI.url }}" class="btn btn-outline-success mt-2">View Details</a>
-
-        <!-- Like & Info Buttons -->
-        <div class="d-flex justify-content-between mt-2">
-            <button id="likeButton_{{ displayAI.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ displayAI.id }})">
-                ❤️ Like
-            </button>
-            <button class="btn btn-outline-info " ><a class="text-decoration-none"href="ai-analysis/{{displayAI.name}}">
-                ℹ Info</a>
-            </button>
+            <!-- Like & Info Buttons -->
+            <div class="d-flex justify-content-between mt-2">
+                <button id="likeButton_{{ displayAI.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ displayAI.id }})">
+                    ❤️ Like
+                </button>
+                <button class="btn btn-outline-info">
+                    <a class="text-decoration-none" href="ai-analysis/{{displayAI.name}}">ℹ Info</a>
+                </button>
+            </div>
         </div>
     </div>
-</div>
   {% endfor %}
 </div>
 
-<!-- CSRF Token (Place it here to ensure it's available globally in the page) -->
-<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+<script>
+  function increaseLikes(aiId) {
+    // Prevent multiple likes using localStorage
+    if (localStorage.getItem(`liked_${aiId}`)) {
+      alert("You have already liked this!");
+      return;
+    }
 
-
-
-<!-- <script>
-   let likeCount = 0;
-   function increaseLikes() {
-       likeCount++;
-       document.getElementById("likeCount").innerText = likeCount;
-   }
-</script> -->
-
-
-
+    fetch(`/like/${aiId}/`, {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest', // Identify as AJAX request
+        'X-CSRFToken': '{{ csrf_token }}' // CSRF token for security
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        alert(data.error);
+      } else {
+        document.getElementById(`likeCount_${aiId}`).innerText = data.likes;
+        localStorage.setItem(`liked_${aiId}`, true); // Store in localStorage
+        document.getElementById(`likeButton_${aiId}`).disabled = true; // Disable button
+      }
+    });
+  }
+</script>
 
 
 </div>
@@ -253,10 +260,15 @@
 </ul>
 </nav>
 {% endblock body %}
-         <section class="footer">
+</main>
+<footer style="background:black;
+color:white;
+align-items:center;
+">
+  <section class="footer">
       <div class="footer-row">
         <div class="footer-col">
-          <h4 style="text-align-center">Info</h4>
+          <h3 style="text-align-center">Info</h3>
           <ul class="links">
                    
      
@@ -336,15 +348,15 @@
      
           </div>
         </div>
+
+</div>
       </div>
-      <footer style="background:black;
-      color:white;
-      align-items:center;
-      ">
-      <p style="text-align:center;">For Business Inquiry :Shaurya2312046@akgec.ac.in</p> </br>
-      <p style="text-align:center;">© Copyright 2025 aisearchlibrary.in</p></footer>
+  
+      <h6 style="text-align:center;">For Business Inquiry  Shaurya2312046@akgec.ac.in</h6></p> </br>
+      <p style="text-align:center;">© Copyright 2025 aisearchlibrary.in</p>
       
     </section>
+  </footer>
     </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

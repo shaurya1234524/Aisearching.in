@@ -3,7 +3,7 @@
 <meta name="title" content="Top AI Tools from India - Discover Innovative Indian AI Solutions">
 <meta name="description" content="Explore a curated list of cutting-edge AI tools developed in India. Discover innovative AI solutions powering various industries from Indian creators and companies.">
 <meta name="description" content="Explore a curated list of cutting-edge AI tools developed in India. Discover innovative AI solutions powering various industries from Indian creators and companies.">
-<link rel="canonical" href="https://aisearchlibrary.in/india{{ request.path|add:"/" }}" />
+<link rel="canonical" href="https://aisearchlibrary.in/india" />
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7277508044418574"
      crossorigin="anonymous"></script>
 {% endblock style %}
@@ -15,45 +15,69 @@
 {% endblock form %}
 {% block body %}
 
-{% for displayinAI in page_obj %}
-<div class="card border-success shadow-sm rounded-3 text-center" style="width: 18rem;">
-    <div class="d-flex justify-content-center mt-3">
-        <img src="{{displayinAI.image}}" class="rounded-circle border border-2 border-success" style="height: 60px; width: 60px;" alt="Profile Image">
-    </div>
-    <div class="card-body">
-        <h5 class="card-title text-success fw-bold">{{displayinAI.name}}</h5>
-        <p class="card-text text-muted">{{displayinAI.description}}</p>
-        <h6 class="text-dark">Categories: <span class="fw-semibold">{{displayinAI.category}}</span></h6>
-        <a href="{{displayinAI.url}}" class="btn btn-outline-success mt-2">View Details</a>
-    </div>
-</div>
-
-{% endfor %}
- <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li class="page-item">
-            <a class="page-link" href="?page=1">First</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-        </li>
-        {% endif %}
+<div class="card-container">
+    {% for displayAI in page_obj %}
+      <div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative mx-1 my-1" style="width: 18rem;">
         
-        <li class="page-item disabled">
-            <a class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
-        </li>
-        
-        {% if page_obj.has_next %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-        </li>
-        {% endif %}
-    </ul>
-</nav>
-{% comment %} {% block body %}{% endblock body %} {% endcomment %}
+          <!-- Like Counter at the Top -->
+          <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
+              ❤️ <span id="likeCount_{{ displayAI.id }}">{{ displayAI.like_count }}</span>
+          </div>
+  
+          <div class="d-flex justify-content-center mt-3">
+              <img src="{{ displayAI.image }}" class="rounded-circle border border-2 border-success" 
+              style="height: 60px; width: 60px;" alt="Profile Image">
+          </div>
+  
+          <div class="card-body">
+              <h5 class="card-title text-success fw-bold">{{ displayAI.name }}</h5>
+              <p class="card-text text-muted">{{ displayAI.description }}</p>
+              <h6 class="text-dark">Categories: <span class="fw-semibold">{{ displayAI.category }}</span></h6>
+              <a href="{{ displayAI.url }}" class="btn btn-outline-success mt-2">View Details</a>
+  
+              <!-- Like & Info Buttons -->
+              <div class="d-flex justify-content-between mt-2">
+                  <button id="likeButton_{{ displayAI.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ displayAI.id }})">
+                      ❤️ Like
+                  </button>
+                  <button class="btn btn-outline-info">
+                      <a class="text-decoration-none" href="ai-analysis/{{displayAI.name}}">ℹ Info</a>
+                  </button>
+              </div>
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+  
+  <script>
+    function increaseLikes(aiId) {
+      // Prevent multiple likes using localStorage
+      if (localStorage.getItem(`liked_${aiId}`)) {
+        alert("You have already liked this!");
+        return;
+      }
+  
+      fetch(`/like/${aiId}/`, {
+        method: 'POST',
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest', // Identify as AJAX request
+          'X-CSRFToken': '{{ csrf_token }}' // CSRF token for security
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          document.getElementById(`likeCount_${aiId}`).innerText = data.likes;
+          localStorage.setItem(`liked_${aiId}`, true); // Store in localStorage
+          document.getElementById(`likeButton_${aiId}`).disabled = true; // Disable button
+        }
+      });
+    }
+  </script>
+  
+  
+  </div>
 
 {% endblock body %}

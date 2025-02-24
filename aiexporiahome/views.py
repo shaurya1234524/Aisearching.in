@@ -178,18 +178,27 @@ def HomeworkAi(request):
 
 def form(request):
     return render(request,"form.html")
-def increase_like(request, ai_id):
-    if request.method == "POST":
-        try:
-            ai_tool = AI.objects.get(id=ai_id)  # Query the AI model (AI_TOOL in your case)
-            ai_tool.like_count += 1  # Increment the like count
-            ai_tool.save()  # Save the updated AI object
-            return JsonResponse({'like_count': ai_tool.like_count})  # Return the updated like count
-        except AI.DoesNotExist:
-            return JsonResponse({'error': 'AI tool not found'}, status=404)
-    return JsonResponse({'error': 'Invalid request method'}, status=400)
 
 
+def like_ai(request, ai_id):
+    tool = get_object_or_404(AI, id=ai_id)
+
+    # Get liked tools from session
+    liked_tools = request.session.get('liked_tools', [])
+
+    # Prevent duplicate likes
+    if ai_id in liked_tools:
+        return JsonResponse({'error': 'Already liked'}, status=400)
+
+    # Increase like count
+    tool.like_count += 1
+    tool.save()
+
+    # Store the liked tool ID in session
+    liked_tools.append(ai_id)
+    request.session['liked_tools'] = liked_tools
+
+    return JsonResponse({'likes': tool.like_count})
 
 
 def ai_tool_analysis(request, tool_name):

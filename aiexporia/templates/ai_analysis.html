@@ -1,14 +1,15 @@
  {% extends "index.html" %}
 
 {% block title %}
- <title>{{ tool.name }} - Complete best  AI Analysis||Aisearchlibrary</title>
- <meta name="description" content=" {{ tool.name }} is {{tool.description}}">
- <meta name="keywords" content="{{ tool.name }},AI writing tool, AI copywriting, content generation, AI marketing tool, AI blog writer, AI-powered writing assistant, AI content creation, best AI copywriter","coding","coder","programmer">
- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
- 
- 
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
- <style>
+<title>{{ tool.name }} - Complete best AI Analysis||Aisearchlibrary</title>
+<meta name="description" content=" {{ tool.name }} is {{tool.descrip}}">
+<meta name="keywords"
+    content="{{ tool.name }},AI writing tool, AI copywriting, content generation, AI marketing tool, AI blog writer, AI-powered writing assistant, AI content creation, best AI copywriter">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
      
      .container { max-width: 900px; margin: 50px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 10px rgba(185, 118, 118, 0.1); }
      h1, h2 { text-align: center; }
@@ -16,43 +17,38 @@
      canvas { max-width: 100%; }
      
     </style>
-    {% endblock title %}
-
+{% endblock title %}
 
 {% block body %}
 
-
-
-
-
-
-
-
-
-
-<div class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative mx-1 my-1" style="width: 18rem;">
+<div
+    class="card border-success d-inline-flex shadow-sm rounded-3 text-center position-relative mx-1 my-1"
+    style="width: 18rem;">
     <!-- Like Counter at the Top -->
-    <div class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
+    <div
+        class="position-absolute top-0 end-0 m-2 bg-light border rounded px-2 py-1 shadow-sm">
         ❤️ <span id="likeCount_{{ tool.id }}">{{ tool.like_count }}</span>
     </div>
     {{ tool.id }}
     <div class="d-flex justify-content-center mt-3">
-        <img src="{{ tool.image }}" class="rounded-circle border border-2 border-success" 
-        style="height: 60px; width: 60px;" alt="Profile Image">
+        <img src="{{ tool.image }}"
+            class="rounded-circle border border-2 border-success"
+            style="height: 60px; width: 60px;" alt="Profile Image">
     </div>
 
     <div class="card-body">
         <h5 class="card-title text-success fw-bold">{{ tool.name }}</h5>
         <p class="card-text text-muted">{{ tool.description }}</p>
-        <h6 class="text-dark">Categories: <span class="fw-semibold">{{ tool.category }}</span></h6>
-        <a href="{{ tool.url }}" class="btn btn-outline-success mt-2">View Details</a>
+        <h6 class="text-dark">Categories: <span class="fw-semibold">{{
+                tool.category }}</span></h6>
+        <a href="{{ tool.url }}" class="btn btn-outline-success mt-2">View
+            Details</a>
 
         <!-- Like & Info Buttons -->
         <div class="d-flex justify-content-between mt-2">
-            <button id="likeButton_{{ tool.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ tool.id }})">
-                ❤️ Like
-            </button>
-            <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#infoModal_{{ tool.id }}">
+
+            <button class="btn btn-outline-info" data-bs-toggle="modal"
+                data-bs-target="#infoModal_{{ tool.id }}">
                 ℹ Info
             </button>
         </div>
@@ -60,20 +56,25 @@
 </div>
 
 <!-- Info Modal -->
-<div class="modal fade" id="infoModal_{{ tool.id }}" tabindex="-1" aria-labelledby="infoModalLabel_{{ tool.id }}" aria-hidden="true">
+<div class="modal fade" id="infoModal_{{ tool.id }}" tabindex="-1"
+    aria-labelledby="infoModalLabel_{{ tool.id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel_{{ tool.id }}">{{ tool.name }} - Info</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="infoModalLabel_{{ tool.id }}">{{
+                    tool.name }} - Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <strong>Category:</strong> {{ tool.category }} <br>
                 <strong>Description:</strong> {{ tool.description }} <br>
-                <strong>Website:</strong> <a href="{{ tool.url }}" target="_blank">{{ tool.url }}</a>
+                <strong>Website:</strong> <a href="{{ tool.url }}"
+                    target="_blank">{{ tool.url }}</a>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -89,14 +90,16 @@
     <h2 class="mt-5">✅ Advantages</h2>
     <ul class="list-group">
         {% for advantage in advantages %}
-            <li class="list-group-item list-group-item-success">{{ advantage.text }}</li>
+        <li class="list-group-item list-group-item-success">{{ advantage.text
+            }}</li>
         {% endfor %}
     </ul>
 
     <h2 class="mt-5">❌ Disadvantages</h2>
     <ul class="list-group">
         {% for disadvantage in disadvantages %}
-            <li class="list-group-item list-group-item-danger">{{ disadvantage.text }}</li>
+        <li class="list-group-item list-group-item-danger">{{ disadvantage.text
+            }}</li>
         {% endfor %}
     </ul>
 </div>
@@ -141,4 +144,4 @@
         }
     });
 </script>
-{%endblock body %} 
+{%endblock body %}
