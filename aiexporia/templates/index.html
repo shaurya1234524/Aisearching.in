@@ -195,13 +195,41 @@
                 <button id="likeButton_{{ displayAI.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ displayAI.id }})">
                     ❤️ Like
                 </button>
-                <button class="btn btn-outline-info">
-                    <a class="text-decoration-none" href="ai-analysis/{{displayAI.name}}">ℹ Info</a>
-                </button>
+
+            <button class="btn btn-outline-info" data-bs-toggle="modal"
+                data-bs-target="#infoModal_{{ tool.id }}">
+                ℹ Info
+            </button>
+
+
             </div>
         </div>
     </div>
   {% endfor %}
+</div>
+<!-- Info Modal -->
+<div class="modal fade" id="infoModal_{{ tool.id }}" tabindex="-1"
+    aria-labelledby="infoModalLabel_{{ tool.id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel_{{ tool.id }}">{{
+                    tool.name }} - Info</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <strong>Category:</strong> {{ tool.category }} <br>
+                <strong>Description:</strong> {{ tool.description }} <br>
+                <strong>Website:</strong> <a href="{{ tool.url }}"
+                    target="_blank">{{ tool.url }}</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"
+                    data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
