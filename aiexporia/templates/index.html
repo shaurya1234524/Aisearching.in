@@ -16,7 +16,7 @@
 
   gtag('config', 'G-VL6Q084F8E');
 </script>
-<script src="https://shaurya-bucket1222333223123.s3.eu-north-1.amazonaws.com/admin/js/load.js"></script>
+
 <meta charset="UTF-8">
 <meta name="google-adsense-account" content="ca-pub-7277508044418574">
 <link rel="stylesheet"   href="https://shaurya-bucket-5763394.s3.eu-north-1.amazonaws.com/admin/css/footer.css">
@@ -197,7 +197,7 @@
                 </button>
 
             <button class="btn btn-outline-info" data-bs-toggle="modal"
-                data-bs-target="#infoModal_{{ tool.id }}">
+                data-bs-target="#infoModal_{{ displayAI.id }}">
                 ℹ Info
             </button>
 
@@ -208,21 +208,21 @@
   {% endfor %}
 </div>
 <!-- Info Modal -->
-<div class="modal fade" id="infoModal_{{ tool.id }}" tabindex="-1"
-    aria-labelledby="infoModalLabel_{{ tool.id }}" aria-hidden="true">
+<div class="modal fade" id="infoModal_{{ displayAI.id }}" tabindex="-1"
+    aria-labelledby="infoModalLabel_{{ displayAI.id }}" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel_{{ tool.id }}">{{
+                <h5 class="modal-title" id="infoModalLabel_{{ displayAI.id }}">{{
                     tool.name }} - Info</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <strong>Category:</strong> {{ tool.category }} <br>
-                <strong>Description:</strong> {{ tool.description }} <br>
-                <strong>Website:</strong> <a href="{{ tool.url }}"
-                    target="_blank">{{ tool.url }}</a>
+                <strong>Category:</strong> {{ displayAI.category }} <br>
+                <strong>Description:</strong> {{ displayAI.description }} <br>
+                <strong>Website:</strong> <a href="{{ displayAI.url }}"
+                    target="_blank">{{ displayAI.url }}</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary"
