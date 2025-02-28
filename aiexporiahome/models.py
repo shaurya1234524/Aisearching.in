@@ -51,3 +51,10 @@ class AIToolDisadvantage(models.Model):
 
     def __str__(self):
         return f"Disadvantage of {self.tool.name}"
+class LikedAI(models.Model):
+    ai_tool = models.ForeignKey(AI, on_delete=models.CASCADE)
+    ip_address = models.GenericIPAddressField()  # Store user’s IP address
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('ai_tool', 'ip_address') 
