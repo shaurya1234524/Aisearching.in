@@ -180,48 +180,26 @@ def form(request):
     return render(request,"form.html")
 
 
-# def like_ai(request, ai_id):
-#     tool = get_object_or_404(AI, id=ai_id)
+def like_ai(request, ai_id):
+    tool = get_object_or_404(AI, id=ai_id)
 
-#     # Get liked tools from session
-#     liked_tools = request.session.get('liked_tools', [])
+    # Get liked tools from session
+    liked_tools = request.session.get('liked_tools', [])
 
-#     # Prevent duplicate likes
-#     if ai_id in liked_tools:
-#         return JsonResponse({'error': 'Already liked'}, status=400)
+    # Prevent duplicate likes
+    if ai_id in liked_tools:
+        return JsonResponse({'error': 'Already liked'}, status=400)
 
-#     # Increase like count
-#     tool.like_count += 1
-#     tool.save()
+    # Increase like count
+    tool.like_count += 1
+    tool.save()
 
-#     # Store the liked tool ID in session
-#     liked_tools.append(ai_id)
-#     request.session['liked_tools'] = liked_tools
+    # Store the liked tool ID in session
+    liked_tools.append(ai_id)
+    request.session['liked_tools'] = liked_tools
 
-#     return JsonResponse({'likes': tool.like_count})
-def get_client_ip(request):
-    """Get the client IP address from request headers."""
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
+    return JsonResponse({'likes': tool.like_count})
 
-def like_ai_tool(request, ai_id):
-    ai_tool = get_object_or_404(AI, id=ai_id)
-    user_ip = get_client_ip(request)
-
-    # Check if this IP has already liked the AI tool
-    if LikedAI.objects.filter(ai_tool=ai_tool, ip_address=user_ip).exists():
-        return JsonResponse({'error': 'You have already liked this!'}, status=400)
-
-    # Add new like and update like count
-    LikedAI.objects.create(ai_tool=ai_tool, ip_address=user_ip)
-    ai_tool.like_count += 1
-    ai_tool.save()
-
-    return JsonResponse({'likes': ai_tool.like_count})
 
 def ai_tool_analysis(request, tool_name):
    
