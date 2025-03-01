@@ -194,7 +194,9 @@
             <!-- Like & Info Buttons -->
             <div class="d-flex justify-content-between mt-2">
             
-
+  <button id="likeButton_{{ displayAI.id }}" class="btn btn-outline-danger flex-grow-1 me-1" onclick="increaseLikes({{ displayAI.id }})">
+                    ❤️ Like
+                </button>
 
             <button class="btn btn-outline-info" data-bs-toggle="modal"
                 data-bs-target="#infoModal_{{ displayAI.id }}">
