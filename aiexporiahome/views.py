@@ -201,29 +201,3 @@ def like_ai(request, ai_id):
     return JsonResponse({'likes': tool.like_count})
 
 
-def ai_tool_analysis(request, tool_name):
-   
-  
-
-    # Fetch the AI tool data
-    tool = get_object_or_404(AI,name=tool_name)
-    
-    # Fetch related data
-    ratings = tool.ratings.all()
-    advantages = tool.advantages.all()
-    disadvantages = tool.disadvantages.all()
-
-
-    # Prepare data for the template
-    context = {
-     
-        "tool": tool,
-        "ratings": ratings,
-        "advantages": advantages,
-        "disadvantages": disadvantages
-    }
-
-    return render(request,'ai_analysis.html',context)
-    
-
-      
