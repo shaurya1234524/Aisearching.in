@@ -181,23 +181,8 @@ def form(request):
 
 
 def like_ai(request, ai_id):
-    tool = get_object_or_404(AI, id=ai_id)
-
-    # Get liked tools from session
-    liked_tools = request.session.get('liked_tools', [])
-
-    # Prevent duplicate likes
-    if ai_id in liked_tools:
-        return JsonResponse({'error': 'Already liked'}, status=400)
-
-    # Increase like count
-    tool.like_count += 1
-    tool.save()
-
-    # Store the liked tool ID in session
-    liked_tools.append(ai_id)
-    request.session['liked_tools'] = liked_tools
-
-    return JsonResponse({'likes': tool.like_count})
-
+    ai = get_object_or_404(AI, id=ai_id)
+    ai.like_count += 1  # Increment the like count
+    ai.save()
+    return JsonResponse({"like_count": ai.like_count})
 
