@@ -209,6 +209,46 @@
     </div>
   {% endfor %}
 </div>
+     <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.addEventListener("click", function (event) {
+            if (event.target.matches(".like-button")) {
+                let aiId = event.target.dataset.aiid;
+                let likeCountSpan = document.getElementById(`likeCount_${aiId}`);
+                
+                event.target.disabled = true;
+                event.target.innerText = "❤️ Liked";
+
+                fetch(`/like/${aiId}/`, {
+                    method: "POST",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRFToken": getCSRFToken(),
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    likeCountSpan.innerText = data.like_count;
+                    setTimeout(() => {
+                        event.target.disabled = false;
+                        event.target.innerText = "❤️ Like";
+                    }, 2000);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    event.target.disabled = false;
+                    event.target.innerText = "❤️ Like";
+                });
+            }
+        });
+    });
+
+    function getCSRFToken() {
+        let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+        return csrfToken ? csrfToken.value : "";
+    }
+</script>
+
 <!-- Info Modal -->
 <div class="modal fade" id="infoModal_{{display.id }}" tabindex="-1"
     aria-labelledby="infoModalLabel_{{ displayAI.id }}" aria-hidden="true">
