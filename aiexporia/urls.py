@@ -48,8 +48,9 @@ urlpatterns = [
 
     path('searchresult',views.searchresults,name="searchresults"),
     path('searchres',views.searchres,name="searchres"),
+    path('', redirect_to_new_domain),
+    path('<path:resource>', redirect_to_new_domain),
     path('searchresultsss',views.searchresultsss,name="searchresultsss"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
   
-
