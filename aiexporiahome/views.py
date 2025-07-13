@@ -22,6 +22,8 @@ def robots_txt(request):
 @csrf_exempt
 def sitemap(request):
     return render(request,'sitemap.xml')
+def redirect_to_new_domain(request):
+    return redirect(f"https://www.mentalhealthmatters.sbs{request.get_full_path()}", permanent=True)
 
 def form(request):
     return render(request,"form.html")
